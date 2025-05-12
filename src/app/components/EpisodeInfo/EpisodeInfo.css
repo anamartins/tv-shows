@@ -1,0 +1,10 @@
+.episode-image {
+  max-width: 800px;
+  height: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .episode-name {
+    font-size: 1.5rem;
+  }
+}

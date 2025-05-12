@@ -1,0 +1,12 @@
+.shows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .shows {
+    display: block;
+  }
+}

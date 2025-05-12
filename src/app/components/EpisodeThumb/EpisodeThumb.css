@@ -1,0 +1,25 @@
+.episode {
+  list-style: none;
+  display: flex;
+  flex: 0 1 280px;
+  margin-bottom: 20px;
+}
+
+.episode-image {
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.episode-name {
+  margin: 5px 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .episode {
+    width: 90vw;
+  }
+  .episode-image {
+    width: 90vw;
+    height: auto;
+  }
+}

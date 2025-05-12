@@ -1,0 +1,30 @@
+.show-info {
+  margin-bottom: 5%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.show-image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.show-header {
+  background: linear-gradient(180deg, transparent 0%, black 20%, black 100%);
+  margin-top: -30px;
+}
+
+.show-name {
+  padding-top: 1%;
+}
+
+@media only screen and (max-width: 600px) {
+  .show-image {
+    height: 80px;
+  }
+
+  .show-header {
+    margin-top: -30px;
+  }
+}

@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: ['jsdom'],
+  images: {
+    remotePatterns: [new URL("https://static.tvmaze.com/uploads/images/**")],
+  },
 };
 
 export default nextConfig;

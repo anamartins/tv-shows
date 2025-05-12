@@ -1,0 +1,52 @@
+.show {
+  position: relative;
+  padding: 0;
+}
+
+.show-poster {
+  border-radius: 5px;
+}
+
+.show-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 5px;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background-color: #000;
+  text-align: center;
+  color: #fff;
+  padding: 50% 0;
+  border: 0;
+  margin: 0;
+}
+
+.show-card:hover {
+  opacity: 0.8;
+  transition: 0.5s opacity;
+}
+
+@media only screen and (max-width: 600px) {
+  .show {
+    margin-bottom: 5%;
+  }
+
+  .show-card {
+    position: relative;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    background-color: transparent;
+    text-align: left;
+    padding: 0;
+    transform: none;
+  }
+
+  .show-poster {
+    width: 100%;
+    object-fit: cover;
+  }
+}
