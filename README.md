@@ -1,12 +1,12 @@
 ## How to start
 
-After clone or fork this repository, run:
+After clone or fork this repository, go to the project folder and type:
 
 ```bash
 npm install
 ```
 
-Then you need to run the project
+Then you need to run the project. So, type:
 
 ```bash
 npm run dev
