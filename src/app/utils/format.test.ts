@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { formatEpisode } from "./format";
 
+import { Episode } from "../types";
+
 describe("format", () => {
   it("should return the correct info about the episode", () => {
     const apiEpisode = {
@@ -36,7 +38,7 @@ describe("format", () => {
       },
     };
 
-    const episode = {
+    const episode: Episode = {
       id: 657308,
       url: "https://www.tvmaze.com/episodes/657308/the-powerpuff-girls-1x01-escape-from-monster-island",
       name: "Escape from Monster Island",

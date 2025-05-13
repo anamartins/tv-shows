@@ -10,6 +10,15 @@
   border-radius: 5px;
 }
 
+.episode a:hover .episode-image {
+  opacity: 0.5;
+  transition: 0.5s opacity;
+}
+
+.episode a:hover .episode-name {
+  text-decoration: underline;
+}
+
 .episode-name {
   margin: 5px 0;
 }

@@ -1,6 +1,8 @@
 import { stripHTML } from "./string";
+import { ApiEpisode, Episode } from "../types";
 
-export function formatEpisode(episode) {
+//this function gets an episode and returns an episode with a summary without the HTML tags and an episode image if they don't have one
+export function formatEpisode(episode: ApiEpisode): Episode {
   let summary = "";
   if (episode.summary) {
     summary = stripHTML(episode.summary);

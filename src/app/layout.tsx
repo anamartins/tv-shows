@@ -31,6 +31,11 @@ export default function RootLayout({
           </ul>
         </header>
         {children}
+        <footer>
+          <a href="https://github.com/anamartins/tv-shows" target="_blank">
+            ✨ Check this on Github ✨
+          </a>
+        </footer>
       </body>
     </html>
   );
