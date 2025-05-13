@@ -1,4 +1,3 @@
-import { JSDOM } from "jsdom";
 import Link from "next/link";
 import { getShowById, getShowEpisodesBySeasonsId } from "@/app/utils/api";
 import ShowInfo from "@/app/components/ShowInfo/ShowInfo";
@@ -16,12 +15,6 @@ export default async function ShowPage({
   const show = await getShowById(id);
   const episodes = await getShowEpisodesBySeasonsId(show.seasonsId);
 
-  let summary = "";
-  if (show.summary) {
-    const dom = new JSDOM(show.summary);
-    summary = dom.window.document.querySelector("p").textContent;
-  }
-
   return (
     <>
       <nav className={styles.nav}>
@@ -31,7 +24,7 @@ export default async function ShowPage({
         <ShowInfo
           name={show.name}
           img={show.image?.original}
-          summary={summary}
+          summary={show.summary}
         />
         {episodes.map((arr, index) => (
           <div key={index}>

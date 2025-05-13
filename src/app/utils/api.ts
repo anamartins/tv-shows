@@ -1,4 +1,4 @@
-import { slugify } from "./string";
+import { slugify, stripHTML } from "./string";
 import { formatEpisode } from "./format";
 
 import { Episode, ApiEpisode, Show, ApiShow, Season } from "../types";
@@ -10,7 +10,12 @@ export async function getShowById(id: string): Promise<Show> {
   const seasons = await getShowSeasonsById(id);
   const seasonsId = seasons.map((s) => s.id);
 
-  return { ...show, slug: slugify(show.name), seasonsId };
+  let summary = "";
+  if (show.summary) {
+    summary = stripHTML(show.summary);
+  }
+
+  return { ...show, summary, slug: slugify(show.name), seasonsId };
 }
 
 //this function gets an show id and returns an array with all episodes from that show
