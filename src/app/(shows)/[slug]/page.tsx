@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Error404 from "@/app/pages/404";
 import { getShowById, getShowEpisodesBySeasonsId } from "@/app/utils/api";
 import ShowInfo from "@/app/components/ShowInfo/ShowInfo";
 import EpisodesList from "@/app/components/EpisodesList/EpisodesList";
@@ -12,8 +13,13 @@ export default async function ShowPage({
 }) {
   const p = await params;
   const id = p.slug.split("-").pop();
-  const show = await getShowById(id);
-  const episodes = await getShowEpisodesBySeasonsId(show.seasonsId);
+  let show, episodes;
+  try {
+    show = await getShowById(id);
+    episodes = await getShowEpisodesBySeasonsId(show.seasonsId);
+  } catch {
+    return <Error404 />;
+  }
 
   return (
     <>
