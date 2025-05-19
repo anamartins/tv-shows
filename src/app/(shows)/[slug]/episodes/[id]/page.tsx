@@ -9,16 +9,12 @@ export default async function EpisodePage({ params }) {
   const p = await params;
   const showId = p.slug.split("-").pop();
   const [season, episode] = p.id.split("-");
-  let hasError = false;
+
   let episodeInfo;
+
   try {
     episodeInfo = await getShowEpisodeByNumber(showId, season, episode);
-  } catch (error) {
-    hasError = true;
-    episodeInfo = {};
-  }
-
-  if (hasError) {
+  } catch {
     return <Error404 />;
   }
 

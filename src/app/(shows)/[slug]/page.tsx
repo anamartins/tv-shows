@@ -13,17 +13,11 @@ export default async function ShowPage({
 }) {
   const p = await params;
   const id = p.slug.split("-").pop();
-  let hasError = false;
   let show, episodes;
   try {
     show = await getShowById(id);
     episodes = await getShowEpisodesBySeasonsId(show.seasonsId);
-  } catch (error) {
-    hasError = true;
-    show = {};
-  }
-
-  if (hasError) {
+  } catch {
     return <Error404 />;
   }
 
