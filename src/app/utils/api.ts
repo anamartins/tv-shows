@@ -50,19 +50,14 @@ export async function getShowEpisodesInSeasonsById(
   seasonId: number,
 ): Promise<Season[] | []> {
   let mappedEpisodes: Season[] | [] = [];
+  const res = await fetch(
+    `https://api.tvmaze.com/seasons/${seasonId}/episodes`,
+  );
+  const episodes = await res.json();
+  mappedEpisodes = episodes.map((ep) => formatEpisode(ep));
+  mappedEpisodes = mappedEpisodes.filter((ep) => ep.number); //this removes special episodes, which doesn't have an episode number
 
-  try {
-    const res = await fetch(
-      `https://api.tvmaze.com/seasons/${seasonId}/episodes`,
-    );
-    const episodes = await res.json();
-    mappedEpisodes = episodes.map((ep) => formatEpisode(ep));
-    mappedEpisodes = mappedEpisodes.filter((ep) => ep.number); //this removes special episodes, which doesn't have an episode number
-  } catch (error) {
-    console.log(error); //to-do: handle error in the UI
-  } finally {
-    return mappedEpisodes;
-  }
+  return mappedEpisodes;
 }
 
 // this function gets an show id, a season and a episode number and returns an object with the episode info and a normalized summary and an episode image

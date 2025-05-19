@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Error404 from "@/app/pages/404";
 import EpisodeInfo from "@/app/components/EpisodeInfo/EpisodeInfo";
 import { getShowEpisodeByNumber } from "@/app/utils/api";
 
@@ -8,23 +9,34 @@ export default async function EpisodePage({ params }) {
   const p = await params;
   const showId = p.slug.split("-").pop();
   const [season, episode] = p.id.split("-");
-  const data = await getShowEpisodeByNumber(showId, season, episode);
+  let hasError = false;
+  let episodeInfo;
+  try {
+    episodeInfo = await getShowEpisodeByNumber(showId, season, episode);
+  } catch (error) {
+    hasError = true;
+    episodeInfo = {};
+  }
+
+  if (hasError) {
+    return <Error404 />;
+  }
 
   return (
     <>
       <nav className={styles.nav}>
         <Link href="/">Home</Link> {">"}{" "}
-        <Link href={`/${p.slug}`}>{data._links.show.name}</Link> {">"} Season{" "}
-        {season}, Episode {episode}
+        <Link href={`/${p.slug}`}>{episodeInfo._links.show.name}</Link> {">"}{" "}
+        Season {season}, Episode {episode}
       </nav>
       <main className={styles.main}>
         <EpisodeInfo
-          imgSrc={data.image}
-          epName={data.name}
+          imgSrc={episodeInfo.image}
+          epName={episodeInfo.name}
           season={season}
           episode={episode}
-          airdate={data.airdate}
-          summary={data.summary}
+          airdate={episodeInfo.airdate}
+          summary={episodeInfo.summary}
         />
       </main>
     </>
