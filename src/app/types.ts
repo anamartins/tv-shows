@@ -52,6 +52,7 @@ export type Episode = {
       name: string;
     };
   };
+  status?: number;
 };
 
 // a Season has all information about an specific season from an specific show, except the episodes.
